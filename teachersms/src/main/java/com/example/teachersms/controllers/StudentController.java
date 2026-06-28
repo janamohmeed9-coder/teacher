@@ -5,6 +5,8 @@ import com.example.teachersms.services.StudentServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/student")
 @RequiredArgsConstructor
@@ -15,5 +17,10 @@ public class StudentController {
     @GetMapping("/{id}")
     public StudentResponse getStudent(@PathVariable Long id){
         return studentService.getStudent(id);
+    }
+
+    @GetMapping
+    public List<StudentResponse> getAllStudents() {
+        return studentService.getAllStudents();
     }
 }

@@ -7,6 +7,8 @@ import com.example.teachersms.repositories.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class StudentServices {
@@ -24,15 +26,28 @@ public class StudentServices {
                 .studentId(student.getId())
                 .birthDate(user.getBirthDate())
                 .email(user.getEmail())
-//            .phoneNumber(.....)
-//        .className(.....)
-//        .gradeName(.....)
+//            .phoneNumber()
+//        .className()
+//        .gradeName()
                 .build();
 
 
 
     }
 
+    public List<StudentResponse> getAllStudents() {
+
+        List<Student> students = studentRepository.findAll();
+
+        return students.stream()
+                .map(student -> StudentResponse.builder()
+                        .studentId(student.getId())
+                        .firstname(student.getUser().getFirstName())
+                        .lastName(student.getUser().getLastName())
+                        .gradeName("")
+                        .build())
+                .toList();
+    }
 
 
 }

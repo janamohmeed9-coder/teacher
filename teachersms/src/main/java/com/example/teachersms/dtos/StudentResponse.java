@@ -10,6 +10,8 @@ import java.time.LocalDate;
 public class StudentResponse {
 
     private Long studentId;
+    private String firstname;
+    private String lastName;
 
     private LocalDate birthDate;
 
