@@ -1,0 +1,97 @@
+<div class="dashboard">
+  <div class="header">
+    <div class="welcome">
+    
+      <div>
+        <h2>Welcome Back, MS Raghad 👋</h2>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span class="date">June 2025</span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card course-card">
+      <div class="course-header">
+        <div class="course-icon"><img src="assets/images/flutter-icon.png" alt=""></div>
+        <div>
+          <small>Grade 12</small>
+        </div>
+      </div>
+      <div class="course-stats">
+        <div class="stat">
+          <span class="val">{{ dashboard?.studentsCount }}</span>
+          <span class="lbl">Students</span>
+        </div>
+        <div class="stat">
+          <span class="val">7</span>
+          <span class="lbl">Lessons</span>
+        </div>
+        <div class="stat">
+          <span class="val">12</span>
+          <span class="lbl">Topics</span>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-label">
+          <span>Course Progress</span>
+          <span class="progress-val">68%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 68%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card calendar-card">
+      <div class="cal-header">
+        <button>‹</button>
+        <span>June 2025</span>
+        <button>›</button>
+      </div>
+      <div class="cal-grid">
+        <div class="day-name" *ngFor="let d of dayNames">{{ d }}</div>
+      
+        <div class="day" *ngFor="let day of calendarDays"
+             [class.empty]="!day"
+             [class.today]="day === 15"
+             [class.has-event]="day !== null && [3,8,22].includes(day)">
+          {{ day || '' }}
+        </div>
+      </div>
+    </div>
+
+  
+    <div class="card assignments-card">
+      <div class="assign-icon">📝</div>
+      <div class="assign-count">{{dashboard?.assignmentsCount}}</div>
+      <div class="assign-label">Number of Assignments</div>
+    </div>
+
+    <div class="card attendance-card">
+      <h4>Attendance</h4>
+      <div class="donut-wrapper">
+        <svg viewBox="0 0 100 100" class="donut">
+          <circle cx="50" cy="50" r="35" fill="none" stroke="#2a2a2a" stroke-width="12"/>
+          <circle cx="50" cy="50" r="35" fill="none" stroke="#4a9eff" stroke-width="12"
+                  stroke-dasharray="219.9" stroke-dashoffset="165"
+                  stroke-linecap="round" transform="rotate(-90 50 50)"/>
+          <text x="50" y="55" text-anchor="middle" fill="white" font-size="16" font-weight="bold">{{ dashboard?.attendancePercentage}}%</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="card performance-card">
+      <h4>Performance Overview</h4>
+      <div class="bar-chart">
+        <div class="bar-group" *ngFor="let item of performance">
+          <div class="bar" [style.height.px]="item.value * 1.2">
+            <div class="bar-fill" [style.background]="item.color"></div>
+          </div>
+          <span class="bar-label">{{ item.day }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

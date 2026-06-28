@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  background: #EEEEEE;
+  font-family: Arial;
+}
+
+
+.layout {
+  display: flex;
+}
+
+
+.cont { 
+  width: 220px;
+  height: 107vh;
+  background: #620000;
+  color: #EEEEEE;
+  padding: 10px;
+}
+
+.logo {
+ background: #eee;
+  height: 70px;
+  width: 210px;
+  border-radius: 40px 10px 10px 40px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+color: red;
+  margin: 10px 0 20px 20px; 
+
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+
+}
+
+.menu li i{
+    width:22px;
+    font-size:18px;
+}
+
+.menu li.active {
+  border: 2px solid white;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  background: #eee;
+}
+
+
+.bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.bar input {
+  padding: 10px;
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+table {
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  
+}
+.goerd{
+    background-color:#FCF8F8 ;
+}
+
+thead {
+  background: #E9E3E6;
+}
+
+
+
+.grade-green {
+  padding: 6px 18px;
+  border-radius: 20px;
+  background: #e6f4ea;
+  color: #3B6D11;
+}
+
+.grade-red {
+    padding: 6px 18px;
+    border-radius: 20px;
+    background: #6200001F;
+    color: #620000;
+
+}
+.grade-yellow {
+  padding: 6px 18px;
+  border-radius: 20px;
+  background: #EAF3DE;
+  color: #BA7517    ;
+}
+.grade-yellow1 {
+  padding: 6px 18px;
+  border-radius: 20px;
+  background: #FAEEDA;
+  color: #3B6D11    ;
+}
+.grade-redD{
+    padding: 6px 18px;
+  border-radius: 20px;
+  background: #FF02022E;
+  color: #F21C00C9;
+}
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+}
