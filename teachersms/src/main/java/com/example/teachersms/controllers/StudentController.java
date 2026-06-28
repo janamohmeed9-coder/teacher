@@ -1,0 +1,19 @@
+package com.example.teachersms.controllers;
+
+import com.example.teachersms.dtos.StudentResponse;
+import com.example.teachersms.services.StudentServices;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/student")
+@RequiredArgsConstructor
+public class StudentController {
+
+    private final StudentServices studentService;
+
+    @GetMapping("/{id}")
+    public StudentResponse getStudent(@PathVariable Long id){
+        return studentService.getStudent(id);
+    }
+}

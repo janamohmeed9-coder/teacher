@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@//localhost:1521/orcl
+    username: C##WEB_USER
+    password: password123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+#  application:
+#    name: Teachersms
+
+jwt:
+  secret: yNcWGArQWpoh4lHACl/cbhnWdgCv9ML92Rq+SMnl3zc=
+  expiry: 8640000
