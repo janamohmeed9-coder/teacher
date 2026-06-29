@@ -8,7 +8,7 @@ import { Profile } from '../interface/profile.interface';
 })
 export class ProfileService {
 
-  private apiUrl = 'http://localhost:8080/profile';
+  private apiUrl = 'http://localhost:8080/teacher/profile/${id}';
 
   constructor(private http: HttpClient) {}
 
