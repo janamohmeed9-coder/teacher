@@ -16,7 +16,7 @@ public class AssignmentService {
 
     private final AssignmentRepository assignmentRepository;
 
-    // Get All Assignments
+
     public List<AssignmentResponse> getAssignments() {
 
         return assignmentRepository.findAll()
@@ -25,7 +25,7 @@ public class AssignmentService {
                 .toList();
     }
 
-    // Search by Assignment Name
+
     public List<AssignmentResponse> searchAssignments(String name) {
 
         return assignmentRepository.findByNameContainingIgnoreCase(name)
@@ -34,7 +34,7 @@ public class AssignmentService {
                 .toList();
     }
 
-    // Filter by Grade
+
     public List<AssignmentResponse> filterAssignments(Long gradeId) {
 
         return assignmentRepository.findByCourses_Term_Grades_Id(gradeId)
@@ -43,7 +43,7 @@ public class AssignmentService {
                 .toList();
     }
 
-    // Convert Entity to DTO
+
     private AssignmentResponse mapToResponse(Assignment assignment) {
 
         String gradeName = "";
