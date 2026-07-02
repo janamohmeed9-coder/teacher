@@ -42,5 +42,7 @@ public class Student {
     )
     private Set<Team> teams = new LinkedHashSet<>();
 
-
+    @ManyToOne
+    @JoinColumn(name = "CLASS_ID")
+    private Class studentClass;
 }

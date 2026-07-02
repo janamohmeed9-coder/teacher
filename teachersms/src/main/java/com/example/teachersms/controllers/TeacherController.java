@@ -14,22 +14,20 @@ public class TeacherController {
 
     private final TeacherServices teacherServices;
 
-    @GetMapping("/profile/{id}")
-    public ResponseEntity<TeacherProfileResponse> getTeacherProfile(
-            @PathVariable Long id){
+    @GetMapping("/profile")
+    public ResponseEntity<TeacherProfileResponse> getTeacherProfile() {
 
         return ResponseEntity.ok(
-                teacherServices.getTeacherProfile(id)
+                teacherServices.getTeacherProfile()
         );
     }
 
-
-    @PutMapping("/profile/{id}")
+    @PutMapping("/profile")
     public ResponseEntity<TeacherProfileResponse> updateProfile(
-            @PathVariable Long id,
             @RequestBody UpdateProfileRequest request) {
 
-        return ResponseEntity.ok(teacherServices.updateProfile(id, request));
+        return ResponseEntity.ok(
+                teacherServices.updateProfile(request)
+        );
     }
-
 }

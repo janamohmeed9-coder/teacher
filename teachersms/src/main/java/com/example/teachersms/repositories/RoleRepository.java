@@ -1,5 +1,6 @@
 package com.example.teachersms.repositories;
 
+
 import com.example.teachersms.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 

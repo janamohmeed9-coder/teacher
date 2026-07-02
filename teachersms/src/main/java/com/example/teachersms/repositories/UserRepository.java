@@ -1,5 +1,6 @@
 package com.example.teachersms.repositories;
 
+
 import com.example.teachersms.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,6 +12,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
     boolean existsByEmail(String email);
+
+    boolean existsByNationalNumber(Long nationalNumber);
 
     @Query("""
     SELECT u

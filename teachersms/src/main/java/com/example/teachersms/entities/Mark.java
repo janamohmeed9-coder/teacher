@@ -50,5 +50,12 @@ public class Mark {
     @Column(name = "IS_APPROVED")
     private Boolean isApproved;
 
+    @NotNull
+    @Column(name = "SCORE")
+    private Long score;
+
+    @NotNull
+    @Column(name = "MAX_SCORE")
+    private Long maxScore;
 
 }

@@ -1,7 +1,7 @@
 package com.example.teachersms.security;
 
-import  com.example.teachersms.entities.User;
-//import com.example.teachersms.exceptions.ForbiddenException;
+
+import com.example.teachersms.entities.User;
 import com.example.teachersms.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.*;
