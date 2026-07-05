@@ -12,6 +12,7 @@ import lombok.Setter;
 public class Attendance {
     @Id
     @Column(name = "ATTENDANCE_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotNull

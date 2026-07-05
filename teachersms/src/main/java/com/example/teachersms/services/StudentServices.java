@@ -16,7 +16,7 @@ public class StudentServices {
     private final StudentRepository studentRepository;
 
     public StudentResponse getStudent(Long studentId){
-
+//        System.out.println("Student ID = " + request.getStudentId());
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
 

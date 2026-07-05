@@ -1,10 +1,6 @@
 package com.example.teachersms.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -23,6 +19,7 @@ import java.util.Set;
 @Table(name = "ASSIGNMENT")
 public class Assignment {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "assignment_seq")
     @Column(name = "ASSIGNMENT_ID", nullable = false)
     private Long id;
 
@@ -49,7 +46,7 @@ public class Assignment {
     private String fileLink;
 
     @Size(max = 255)
-    @NotNull
+//    @NotNull
     @Column(name = "STUDENT_SUBMISSION", nullable = false)
     private String studentSubmission;
 

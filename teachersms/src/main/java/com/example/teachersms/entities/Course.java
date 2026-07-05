@@ -16,6 +16,7 @@ import java.util.Set;
 public class Course {
     @Id
     @Column(name = "COURSE_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotNull

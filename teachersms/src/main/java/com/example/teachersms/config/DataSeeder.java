@@ -20,6 +20,7 @@ public class DataSeeder implements CommandLineRunner {
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final TeacherRepository teacherRepository;
     private final StudentRepository studentRepository;
     private final ClassRepository classRepository;
     private final GradeRepository gradeRepository;
@@ -82,6 +83,14 @@ public class DataSeeder implements CommandLineRunner {
                     .role(teacherRole)
                     .build();
             userRepository.save(admin);
+
+            Teacher teacher = Teacher.builder()
+                    .user(admin)
+                    .education("Good")
+                    .employmentHistory("also good")
+                    .numberOfYearsOfExperience(1L)
+                    .build();
+            teacherRepository.save(teacher);
         }
 
 //        if (userRepository.findByFirstName("Ahmed").isEmpty()) {

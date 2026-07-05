@@ -16,6 +16,12 @@ import java.time.LocalDate;
 @Table(name = "MARKS")
 public class Mark {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mark_seq")
+    @SequenceGenerator(
+            name = "mark_seq",
+            sequenceName = "MARK_SEQ",
+            allocationSize = 1
+    )
     @Column(name = "MARK_ID", nullable = false)
     private Long id;
 

@@ -1,12 +1,11 @@
 package com.example.teachersms.controllers;
 
+import com.example.teachersms.dtos.AssignmentRequest;
 import com.example.teachersms.dtos.AssignmentResponse;
 import com.example.teachersms.services.AssignmentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,16 +18,14 @@ public class AssignmentController {
 
     @GetMapping
     public List<AssignmentResponse> getAssignments() {
+
         return assignmentService.getAssignments();
     }
 
-    @GetMapping("/search")
-    public List<AssignmentResponse> search(@RequestParam String name) {
-        return assignmentService.searchAssignments(name);
-    }
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public AssignmentResponse createAssignment(
+            @ModelAttribute AssignmentRequest request) {
 
-    @GetMapping("/filter")
-    public List<AssignmentResponse> filter(@RequestParam Long gradeId) {
-        return assignmentService.filterAssignments(gradeId);
+        return assignmentService.createAssignment(request);
     }
 }
