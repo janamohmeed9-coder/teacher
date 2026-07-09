@@ -1,33 +1,52 @@
+import 'package:fluterrr/api_client.dart';
+import 'package:fluterrr/repots.dart';
 import 'package:flutter/material.dart';
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'assig.dart';
+import 'dart:convert';
+
+import 'dashboard.dart';
+
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
 
   @override
   State<NotificationScreen> createState() => _NotificationScreenState();
 }
-
 class _NotificationScreenState extends State<NotificationScreen> {
+
   final TextEditingController searchController = TextEditingController();
+
   String search = "";
-  final List<Map<String, String>> notifications = [
-    {
-      "title": "Field Trip",
-      "desc": "A school-wide field trip for all grades has been scheduled.",
-      "type": "Activity",
-    },
-    {
-      "title": "Teacher Attendance Submitted",
-      "desc": "Mr. Ali submitted attendance for Grade 10-A.",
-      "type": "Academic",
-    },
-    {
-      "title": "Field Trip",
-      "desc": "A school-wide field trip for all grades has been scheduled.",
-      "type": "Activity",
-    },
-  ];
+
+  List notifications = [];
+  bool isLoading = true;
+  Future<void> getNotifications() async {
+    print("getNotifications called");
+
+    final response = await ApiClient.get('/notifications/1');
+
+    print("Status: ${response.statusCode}");
+    print("Body: ${response.body}");
+
+    if (response.statusCode == 200) {
+      setState(() {
+        notifications = jsonDecode(response.body);
+        isLoading = false;
+      });
+
+      print(notifications);
+    } else {
+      print("Error: ${response.statusCode}");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print("initState called");
+    getNotifications();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -727,8 +746,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
           FluidNavBarIcon(icon: Icons.person),
         ],
           onChange:(index){
-            if(index==2) {
-              Navigator.push(context, MaterialPageRoute(builder: (_)=>AssignmentScreen()));
+            if(index==4) {
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>dachbord()));
             }
           },
         style: FluidNavBarStyle(
