@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -100,5 +101,7 @@ public class User {
     @JoinColumn(name = "ROLE_ID", nullable = false)
     private Role role;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<UserPhoneNumber> phoneNumbers;
 
 }

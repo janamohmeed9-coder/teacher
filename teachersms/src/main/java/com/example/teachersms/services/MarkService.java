@@ -2,21 +2,19 @@ package com.example.teachersms.services;
 
 import com.example.teachersms.dtos.AddMarkRequest;
 import com.example.teachersms.dtos.MarkResponse;
-import com.example.teachersms.entities.Course;
-import com.example.teachersms.entities.Mark;
-import com.example.teachersms.entities.MarksType;
-import com.example.teachersms.entities.Student;
-import com.example.teachersms.repositories.CourseRepository;
-import com.example.teachersms.repositories.MarkRepository;
-import com.example.teachersms.repositories.MarkTypeRepository;
-import com.example.teachersms.repositories.StudentRepository;
+import com.example.teachersms.entities.*;
+import com.example.teachersms.repositories.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import java.lang.Double;
+import java.lang.Long;
+
+
 @Service
 @RequiredArgsConstructor
 public class MarkService {
@@ -25,52 +23,101 @@ public class MarkService {
     private final StudentRepository studentRepository;
     private final MarkTypeRepository markTypeRepository;
     private final CourseRepository courseRepository;
+    private final AssignmentRepository assignmentRepository;
     @PersistenceContext
     private EntityManager entityManager;
-
 
     public List<MarkResponse> getAllMarks() {
 
         return markRepository.findAll()
                 .stream()
                 .map(mark -> MarkResponse.builder()
-                        .studentName(
-                                mark.getUser().getFirstName()
-                                        + " "
-                                        + mark.getUser().getLastName()
-                        )
+                        .markId(mark.getId())
+                        .studentName(mark.getUser().getFirstName()+" "+mark.getUser().getLastName())
+                        .assignmentName(mark.getAssignment().getName())
                         .markType(mark.getType().getType())
                         .score(mark.getScore())
                         .maxScore(mark.getMaxScore())
+                        .approved(mark.getIsApproved())
                         .build())
                 .toList();
     }
 
-    public void addMark(AddMarkRequest request){
-        System.out.println("Request course id = " + request.getCourseId());
+    public void addMark(AddMarkRequest request) {
 
-        System.out.println(courseRepository.findAll());
-
-        System.out.println(courseRepository.existsById(request.getCourseId()));
         Course course = courseRepository.findById(request.getCourseId())
                 .orElseThrow(() -> new RuntimeException("Course not found"));
+
+        Assignment assignment = assignmentRepository.findById(request.getAssignmentId())
+                .orElseThrow(() -> new RuntimeException("Assignment not found"));
 
         Student student = studentRepository.findById(request.getStudentId())
                 .orElseThrow(() -> new RuntimeException("Student not found"));
 
         MarksType type = markTypeRepository.findById(request.getTypeId())
-                .orElseThrow(() -> new RuntimeException("Type not found"));
+                .orElseThrow(() -> new RuntimeException("Mark Type not found"));
 
         Mark mark = new Mark();
 
+        mark.setCourse(course);
+        mark.setAssignment(assignment);
         mark.setUser(student.getUser());
         mark.setType(type);
-        mark.setCourse(course);
-        mark.setScore(request.getScore());
-        mark.setMaxScore(request.getMaxScore());
+
+        mark.setScore(Double.valueOf(request.getScore()));
+        mark.setMaxScore(Double.valueOf(request.getMaxScore()));
+
         mark.setFeedbackDate(LocalDate.now());
-        mark.setCourse(course);
+
+        mark.setIsApproved(false);
+
         markRepository.save(mark);
     }
 
+
+    public void editMark(Long markId, AddMarkRequest request) {
+
+        Mark mark = markRepository.findById(markId)
+                .orElseThrow(() -> new RuntimeException("Mark not found"));
+
+        if (Boolean.TRUE.equals(mark.getIsApproved())) {
+            throw new RuntimeException("Published marks can't be edited");
+        }
+
+        mark.setScore(Double.valueOf(request.getScore()));
+        mark.setMaxScore(Double.valueOf(request.getMaxScore()));
+
+        markRepository.save(mark);
+
+        if (Boolean.TRUE.equals(mark.getIsApproved())) {
+            throw new RuntimeException("Published marks can't be edited");
+        }
+    }
+
+
+
+    public void deleteMark(Long markId) {
+
+        Mark mark = markRepository.findById(markId)
+                .orElseThrow(() -> new RuntimeException("Mark not found"));
+
+        if (Boolean.TRUE.equals(mark.getIsApproved())) {
+            throw new RuntimeException("Published marks can't be deleted");
+        }
+
+        markRepository.delete(mark);
+
+        if (Boolean.TRUE.equals(mark.getIsApproved())) {
+            throw new RuntimeException("Published marks can't be deleted");
+        }
+    }
+
+
+    public void publishAssignment(Long assignmentId) {
+
+        assignmentRepository.findById(assignmentId)
+                .orElseThrow(() -> new RuntimeException("Assignment not found"));
+
+        markRepository.publishAssignment(assignmentId);
+    }
 }

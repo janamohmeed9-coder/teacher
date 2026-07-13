@@ -9,6 +9,8 @@ public class AddMarkRequest {
 
     private Long courseId;
 
+    private Long assignmentId;
+
     private Long typeId;
 
     private Long score;

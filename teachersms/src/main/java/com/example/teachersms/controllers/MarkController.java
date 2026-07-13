@@ -17,8 +17,6 @@ public class MarkController {
 
     @GetMapping
     public List<MarkResponse> getMarks() {
-
-
         return markService.getAllMarks();
     }
 
@@ -26,4 +24,25 @@ public class MarkController {
     public void addMark(@RequestBody AddMarkRequest request) {
         markService.addMark(request);
     }
+
+    @PutMapping("/{markId}")
+    public void editMark(
+            @PathVariable Long markId,
+            @RequestBody AddMarkRequest request) {
+
+        markService.editMark(markId, request);
+    }
+
+    @DeleteMapping("/{markId}")
+    public void deleteMark(@PathVariable Long markId) {
+
+        markService.deleteMark(markId);
+    }
+
+    @PutMapping("/publish-assignment/{assignmentId}")
+    public void publishAssignment(@PathVariable Long assignmentId) {
+
+        markService.publishAssignment(assignmentId);
+    }
+
 }

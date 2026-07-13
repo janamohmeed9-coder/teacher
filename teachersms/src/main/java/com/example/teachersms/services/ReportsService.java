@@ -14,9 +14,9 @@ public class ReportsService {
 
     private final ReportsRepository reportsRepository;
 
-    public List<ReportResponse> getReports(Long userId) {
+    public List<ReportResponse> getAllReports() {
 
-        List<Report> reports = reportsRepository.findBySentTo_Id(userId);
+        List<Report> reports = reportsRepository.findAll();
 
         return reports.stream()
                 .map(report -> ReportResponse.builder()

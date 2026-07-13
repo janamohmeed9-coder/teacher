@@ -19,8 +19,8 @@ public class StudentController {
         return studentService.getStudent(id);
     }
 
-    @GetMapping
-    public List<StudentResponse> getAllStudents() {
-        return studentService.getAllStudents();
+    @GetMapping("/class/{classId}")
+    public List<StudentResponse> getAllStudents(@PathVariable Long classId) {
+        return studentService.getStudentsByClass(classId);
     }
 }

@@ -17,9 +17,10 @@ public class ReportsController {
 
     private final ReportsService reportsService;
 
-    @GetMapping("/{userId}")
-    public List<ReportResponse> getReports(@PathVariable Long userId) {
+    @GetMapping
+    public List<ReportResponse> getAll() {
 
-        return reportsService.getReports(userId);
+        return reportsService.getAllReports();
     }
+
 }

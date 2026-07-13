@@ -11,7 +11,13 @@ public class MarkResponse {
 
     private String markType;
 
-    private Long score;
+    private double score;
 
-    private Long maxScore;
+    private double maxScore;
+
+    private Long markId;
+
+    private String assignmentName;
+
+    private Boolean approved;
 }

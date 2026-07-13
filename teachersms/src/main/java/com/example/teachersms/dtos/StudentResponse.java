@@ -22,4 +22,6 @@ public class StudentResponse {
     private String className;
 
     private String gradeName;
+
+    private Double score;
 }

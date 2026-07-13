@@ -15,6 +15,7 @@ public class Class {
     @Column(name = "CLASS_ID", nullable = false)
     private Long id;
 
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "GRADE_ID", nullable = false)
