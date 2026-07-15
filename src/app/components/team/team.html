@@ -1,0 +1,59 @@
+<div class="layout">
+  
+    <div class="main">
+
+        <div class="bar">
+       
+<app-filter
+  placeholder="All Classes"
+  [options]="classes"
+  (selected)="onClassChange($event)">
+</app-filter>
+<app-search-bar
+  placeholder="Search Students"
+  (search)="onSearch($event)">
+</app-search-bar>
+        </div>
+        <table>
+            <thead>
+                <tr class="head">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+            </thead>
+     <tbody>
+  <tr *ngFor="let student of filteredStudents">
+
+    <td>{{ student.studentId }}</td>
+
+    <td>{{ student.studentName }}</td>
+
+    <td>{{ student.className }}</td>
+
+
+    <td>
+      <button>View</button>
+    </td>
+
+    <td>
+<input
+  class="check"
+  type="checkbox"
+  [(ngModel)]="student.selected">
+    </td>
+
+  </tr>
+</tbody>
+        </table>
+            <app-empty-state *ngIf="filteredStudents.length === 0" title="No Students Found"
+      description="Try searching with another name.">
+    </app-empty-state>
+
+<button class="butt" (click)="addTeam()">
+  + Add Team
+</button>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="page-header">
+
+  <div>
+    <h2>Team Members</h2>
+    <p>Manage your team members</p>
+  </div>
+
+  <button class="add-btn" routerLink="/team">
+    + Add Team
+  </button>
+
+</div>
+
+<div class="teams-container">
+
+  <div class="team-card" *ngFor="let team of teams">
+
+    <div class="left">
+
+      <h4>{{ team.projectName }}</h4>
+
+      <p>{{ team.projectDescription }}</p>
+
+    </div>
+
+    <div class="right">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Student Name</th>
+            <th>Assign Date</th>
+            <th>Deadline</th>
+            <th>Action</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let student of team.studentNames">
+
+            <td>{{ student }}</td>
+
+            <td>{{ team.assignDate }}</td>
+
+            <td>{{ team.deadline }}</td>
+
+            <td>
+              <i class="bi bi-trash"></i>
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <app-empty-state
+    *ngIf="teams.length === 0"
+    title="No Teams Found"
+    description="Create your first team.">
+  </app-empty-state>
+
+</div>

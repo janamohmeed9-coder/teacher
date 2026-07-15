@@ -1,0 +1,111 @@
+<div class="container">
+
+  <div class="content">
+
+    <div class="top-bar">
+
+      <h1>Attendance</h1>
+
+      <app-search-bar
+        placeholder="Search Students"
+        (search)="onSearch($event)">
+      </app-search-bar>
+
+    </div>
+
+    <div class="filters-row">
+
+      <div class="filters">
+
+        <app-filter
+          placeholder="All Classes"
+          [options]="classes"
+          (selected)="onClassChange($event)">
+        </app-filter>
+
+        <app-filter
+          placeholder="All Sessions"
+          [options]="sessions"
+          (selected)="onSessionChange($event)">
+        </app-filter>
+
+      </div>
+
+      <div class="date">
+
+        <button>&lt;</button>
+
+        <span>Today 27 May 2026</span>
+
+        <button>&gt;</button>
+
+      </div>
+
+    </div>
+
+    <div class="select-all">
+
+      <label>
+
+        <input
+          type="checkbox"
+          [(ngModel)]="selectAll"
+          (change)="toggleAll()">
+
+        Select All
+
+      </label>
+
+    </div>
+
+    <div class="students">
+
+      <div
+        class="card"
+        *ngFor="let student of filteredStudents">
+
+        <div class="name">
+
+          <input
+            type="checkbox"
+            [(ngModel)]="student.selected">
+
+          {{ student.name }}
+
+        </div>
+
+        <div class="buttons">
+
+          <button
+            class="absent"
+            [class.active-absent]="student.status === 'Absent'"
+            (click)="setStatus(student, 'Absent')">
+
+            Absent
+
+          </button>
+
+          <button
+            class="present"
+            [class.active-present]="student.status === 'Present'"
+            (click)="setStatus(student, 'Present')">
+
+            Present
+
+          </button>
+
+        </div>
+
+      </div>
+
+      <app-empty-state
+        *ngIf="filteredStudents.length === 0"
+        title="No Students Found"
+        description="Try searching with another name.">
+      </app-empty-state>
+
+    </div>
+
+  </div>
+
+</div>

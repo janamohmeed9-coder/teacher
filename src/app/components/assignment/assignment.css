@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.layout {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.table-box {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+}
+
+.table-box h4 {
+  margin: 0 0 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+}
+
+tbody td {
+  padding: 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.actions i {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.actions button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.create-assignment {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.create-assignment button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

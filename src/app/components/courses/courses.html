@@ -1,0 +1,44 @@
+<div class="layout">
+
+    <div class="main">
+        <h2>My Courses</h2>
+        <div class="top-bar">
+            <div class="custom-select">
+                <app-filter placeholder="All Grades" [options]="grades" (selected)="onGradeChange($event)">
+                </app-filter>
+                <button  class="action-btn view" routerLink="/allTeams"> View Teams </button>
+            </div>
+
+            </div>
+       <div class="course-card" *ngFor="let course of filteredCourses">
+
+    <div class="bare"></div>
+
+    <div class="content">
+
+        <div class="title">
+            <img src="assets/images/flutter-icon.png" class="course-img">
+<h3>{{ course.courseName }}</h3>
+        </div>
+
+        <div class="bottom">
+
+            <div class="act">
+                <button class="study">
+                    <i class="fas fa-edit"></i> Study plan
+                </button>
+
+                <button class="study">
+                    <i class="fas fa-edit"></i> improvment plan
+                </button>
+
+                <button class="add">
+                    + Add Lesson
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

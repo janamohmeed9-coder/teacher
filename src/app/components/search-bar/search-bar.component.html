@@ -1,0 +1,16 @@
+<!-- <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search students" [(ngModel)]="searchTerm">
+</div> -->
+
+
+<div class="search-box">
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    [placeholder]="placeholder"
+    (input)="onSearch()"
+  />
+
+  <i class="fa-solid fa-magnifying-glass"></i>
+</div>

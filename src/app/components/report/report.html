@@ -1,0 +1,41 @@
+<div class="layout">
+
+  <div class="main">
+    <div class="bar">
+      <app-filter placeholder="Receives" [options]="receivers" (selected)="onReceiverChange($event)">
+      </app-filter>
+      <app-search-bar placeholder="Search Report" (search)="onSearch($event)">
+      </app-search-bar>
+    </div>
+
+    <div class="table-box">
+      <table>
+        <thead>
+          <tr>
+            <th>From</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let report of filteredReports">
+            <td>{{ report.senderName }}</td>
+            <td>{{ report.reportName }}</td>
+            <td>{{ report.createdAt }}</td>
+            <td>
+              <a [href]="report.fileLink" target="_blank">
+                Open
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <app-empty-state *ngIf="filteredReports.length === 0" title="No Reports Found"
+        description="Try searching with another name.">
+      </app-empty-state>
+
+    </div>
+
+  </div>

@@ -1,0 +1,47 @@
+<div class="layout">
+  <div class="main">
+
+    <div class="bar">
+<app-filter
+  placeholder="All Grades"
+  [options]="grades"
+  (selected)="onGradeChange($event)">
+</app-filter>
+<app-search-bar
+  placeholder="Search Student"
+  (search)="onSearch($event)">
+</app-search-bar>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Grade</th>
+          <th>Grades</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+<tbody>
+  <tr *ngFor="let student of filteredStudents">
+    <td>{{ student.studentId }}</td>
+    <td>{{ student.firstname }} {{ student.lastName }}</td>
+    <td>{{ student.gradeName }}</td>
+    <td>-</td>
+    <td>
+<button [routerLink]="['/studentProfile', student.studentId]">
+  View
+</button>
+    </td>
+  </tr>
+</tbody>
+    </table>
+        <app-empty-state *ngIf="filteredStudents.length === 0" title="No Students Found"
+      description="Try searching with another name.">
+    </app-empty-state>
+
+  </div>
+
+</div>

@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    background: #EEEEEE;
+    font-family: Arial;
+}
+
+
+.layout {
+    display: flex;
+}
+
+
+.cont {
+    width: 220px;
+    height: 97vh;
+    background: #620000;
+    color: #EEEEEE;
+    padding: 10px;
+}
+
+.logo {
+    background: #eee;
+    height: 70px;
+    width: 210px;
+    border-radius: 40px 10px 10px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    margin: 10px 0 20px 20px;
+
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+
+}
+
+.menu li i {
+    width: 22px;
+    font-size: 18px;
+}
+
+.menu li.active {
+    border: 2px solid white;
+}
+.main {
+  flex: 1;
+  background: #eee;
+  padding: 20px;
+}
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+د
+.timetable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.timetable thead tr {
+  background: #05172F;
+}
+
+.timetable th {
+  color: white;
+  padding: 14px;
+  font-size: 12px;
+}
+
+.timetable th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.timetable th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.timetable td {
+  padding: 10px;
+  height: 70px;
+  text-align: center;
+  border-radius: 12px;
+}
+
+
+
+.graymm {
+  background: #f1f1f1;
+}
+
+
+
+
+.blue {
+      background: #D4E5F3;
+     }
+.red { 
+  background: #F5E6E6; }
+.gray { 
+     background: #E9E3E6;
+
+ }
+
+.day {
+  background: #eee;
+  font-weight: bold;
+}
+
+
+.break-col {
+  background: #f0f0f0;
+}

@@ -1,0 +1,83 @@
+<div class="grade-page">
+
+  <div class="header">
+
+    <h2>Grades</h2>
+
+    <div class="header-actions">
+
+      <app-search-bar
+        placeholder="Search Student"
+        (search)="onSearch($event)">
+      </app-search-bar>
+
+      <button routerLink="/addGrade" class="add-btn">
+        + Add Grade
+      </button>
+
+      <button class="add-btn">
+        Publish
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="grid">
+
+    <div class="grade-card" *ngFor="let student of filteredStudents">
+
+      <div class="card-top">
+
+        <img
+          src="assets/images/Ellipse 88.png"
+          class="avatar"
+          alt="avatar">
+
+        <div class="info">
+
+          <h4>{{ student.studentName }}</h4>
+
+          <div class="progress-bar">
+
+            <div
+              class="progress-fill"
+              [style.width.%]="(student.score / student.maxScore) * 100">
+            </div>
+
+          </div>
+
+        </div>
+
+        <span class="badge">
+          {{ (student.score / student.maxScore) * 100 | number:'1.0-0' }}%
+        </span>
+
+      </div>
+
+      <div class="card-actions">
+
+        <button class="action-btn edit">
+          Edit
+        </button>
+
+        <button
+          class="action-btn view"
+          (click)="deleteGrade(student.markId)">
+          Delete
+        </button>
+
+
+      </div>
+
+    </div>
+
+    <app-empty-state
+      *ngIf="filteredStudents.length === 0"
+      title="No Students Found"
+      description="Try searching with another name.">
+    </app-empty-state>
+
+  </div>
+
+</div>

@@ -1,0 +1,82 @@
+<div class="page">
+
+  <div class="header">
+
+    <h2>Add Team</h2>
+
+    <p>Fill in the details below</p>
+
+  </div>
+
+  <div class="card">
+
+    <div class="field">
+
+      <label>Team Name</label>
+
+      <input
+        type="text"
+        [(ngModel)]="request.teamName">
+
+    </div>
+
+    <div class="field">
+
+      <label>Description</label>
+
+      <input
+        type="text"
+        [(ngModel)]="request.projectDescription">
+
+    </div>
+
+    <div class="field">
+
+      <label>Assign Date</label>
+
+      <input
+        type="date"
+        [(ngModel)]="request.assignDate">
+
+    </div>
+
+    <div class="field">
+
+      <label>Deadline</label>
+
+      <input
+        type="date"
+        [(ngModel)]="request.deadline">
+
+    </div>
+  <div class="field">
+  <label>Course</label>
+
+  <select [(ngModel)]="request.courseId">
+    <option [ngValue]="0">Select Course</option>
+
+    <option
+      *ngFor="let course of courses"
+      [ngValue]="course.courseId">
+
+      {{ course.courseName }}
+
+    </option>
+  </select>
+</div>
+
+    <div class="footer">
+
+      <button
+        class="publish"
+        (click)="publish()">
+
+        Publish
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

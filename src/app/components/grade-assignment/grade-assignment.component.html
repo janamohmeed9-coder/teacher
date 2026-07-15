@@ -1,0 +1,80 @@
+<div class="grade-page">
+
+  <div class="header">
+
+    <h2>Grade Assignment</h2>
+
+    <div class="header-actions">
+
+      <app-search-bar
+        placeholder="Search Student"
+        (search)="onSearch($event)">
+      </app-search-bar>
+
+      <button
+        routerLink="/addGrade"
+        class="add-btn">
+        + Add Grade
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="grid">
+
+    <div
+      class="grade-card"
+      *ngFor="let item of filteredStudents">
+
+      <div class="card-top">
+
+        <div class="info">
+
+          <h4>{{ item.studentName }}</h4>
+
+          <div class="progress-bar">
+
+            <div
+              class="progress-fill"
+              [style.width.%]="(item.studentGrade / item.maxGrade) * 100">
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <span class="badge">
+
+          {{ (item.studentGrade / item.maxGrade) * 100 | number:'1.0-0' }}%
+
+        </span>
+
+      </div>
+
+      <div class="card-actions">
+
+        <button class="action-btn edit">
+          Edit
+        </button>
+
+        <button
+          class="action-btn delete"
+          (click)="deleteGrade(item.id)">
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+    <app-empty-state
+      *ngIf="filteredStudents.length === 0"
+      title="No Grades Found"
+      description="Add your first grade.">
+    </app-empty-state>
+
+  </div>
+
+</div>

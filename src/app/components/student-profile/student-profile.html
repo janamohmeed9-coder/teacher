@@ -1,0 +1,55 @@
+<div class="page">
+
+
+  <div class="main">
+
+    <div class="header">
+      <h2>View Student</h2>
+    </div>
+
+    <div class="student-card">
+      <div class="avatar-section">
+        <div class="avatar">
+          <img src="https://cdn-icons-png.flaticon.com/512/6997/6997662.png" alt="Student">
+          <button class="camera">
+            <i class="bi bi-camera-fill"></i>
+          </button>
+        </div>
+<h2>{{ profile.firstname }} {{ profile.lastName }}</h2> 
+       <span class="status">Active Student</span>
+      </div>
+
+      <div class="student-details">
+        <div class="row-item">
+          <div class="row-left"><i class="bi bi-backpack"></i><span>Grade  </span></div>
+<div class="row-right">{{ profile.gradeName }}</div>        <div class="row-item">
+<div class="row-right">{{ profile.className }}</div>         
+        </div>
+        <div class="row-item">
+          <div class="row-left"><i class="bi bi-person-vcard"></i><span>Student ID </span></div>
+          <div class="row-right">{{profile.studentId}}</div>
+        </div>
+        <div class="row-item">
+          <div class="row-left"><i class="bi bi-envelope"></i><span>Email  </span></div>
+          <div class="row-right">{{ profile.email }}</div>
+        </div>
+        <div class="row-item">
+          <div class="row-left"><i class="bi bi-telephone"></i><span>Phone Number  </span></div>
+          <div class="row-right">{{ profile.phoneNumber }}</div>
+        </div>
+        <div class="row-item">
+          <div class="row-left"><i class="bi bi-calendar3"></i><span>Date of Birth  </span></div>
+          <div class="row-right">{{ profile.birthDate }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card-box"><h5>Average Grade</h5><h2>92.5%</h2></div>
+      <div class="card-box"><h5>Average Grade</h5><h2>92.5%</h2></div>
+      <div class="card-box"><h5>Average Grade</h5><h2>92.5%</h2></div>
+      <div class="card-box"><h5>Average Grade</h5><h2>92.5%</h2></div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="page">
+
+  <div class="content">
+
+    <div class="header">
+      <div class="header-title">
+
+        <span class="material-icons notification-icon">
+          notifications_none
+        </span>
+
+        <div>
+          <h2>Notifications</h2>
+          <p>Stay updated with important alerts and activities.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <app-search-bar
+      placeholder="Search Notifications"
+      (search)="onSearch($event)">
+    </app-search-bar>
+
+    <h3 class="section-title">Notifications</h3>
+
+    @if (filteredNotifications.length === 0) {
+
+      <app-empty-state
+        title="No Notifications Found"
+        description="No notifications available.">
+      </app-empty-state>
+
+    }
+
+    @for (item of filteredNotifications; track item.notificationId) {
+
+      <div class="notification-card">
+
+        <div class="left">
+
+          <div class="icon">
+            <i
+              class="fa-solid fa-circle-user"
+              [ngClass]="{
+                'high': item.priority === 'High',
+                'medium': item.priority === 'Medium',
+                'low': item.priority === 'Low'
+              }">
+            </i>
+          </div>
+
+          <div class="details">
+
+            <div
+              class="priority"
+              [ngClass]="{
+                'high-text': item.priority === 'High',
+                'medium-text': item.priority === 'Medium',
+                'low-text': item.priority === 'Low'
+              }">
+
+              ● {{ item.priority }} Priority
+
+            </div>
+
+            <h3>{{ item.title }}</h3>
+
+            <p>{{ item.body }}</p>
+
+            <small>
+              From: {{ item.senderName }}
+            </small>
+
+          </div>
+
+        </div>
+
+        <div class="right">
+
+          <div class="date">
+            {{ item.sentAt | date:'dd MMM yyyy' }}
+          </div>
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

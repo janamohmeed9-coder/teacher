@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  
+}
+
+.header {
+  background: #E9E3E6;
+  padding: 15px 20px;
+ border-radius: 6px;
+
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.header p {
+  margin: 5px;
+  color: #7A6060;
+}
+
+
+.card {
+  padding: 25px;
+}
+
+
+.menen{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid#62000033;
+  border-radius: 6px;
+  }
+
+
+.footer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.cancel {
+  border: 1px solid #620000;
+  color: black;
+background-color: #FFFFFF;
+  padding: 10px 25px;
+  border-radius: 6px;
+ 
+}
+
+
+.publish {
+  color: black;
+   border: 1px solid #87A7C8;
+  padding: 10px 25px;
+  border-radius: 6px;
+  
+}

@@ -1,0 +1,78 @@
+<div class="layout">
+
+  <div class="main">
+
+    <div class="bar">
+
+      <app-search-bar
+        placeholder="Search Assignment"
+        (search)="onSearch($event)">
+      </app-search-bar>
+
+    </div>
+
+    <div class="table-box">
+
+      <h4>All Assignments</h4>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Assignment Name</th>
+            <th>Assign Date</th>
+            <th>Deadline</th>
+            <th>Grade</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let assignment of filteredAssignments">
+
+            <td>{{ assignment.assignmentName }}</td>
+            <td>{{ assignment.assignDate }}</td>
+            <td>{{ assignment.deadline }}</td>
+            <td>{{ assignment.gradeName }}</td>
+
+            <td class="actions">
+
+              <i
+                class="bi bi-trash"
+                (click)="deleteAssignment(assignment.assignmentId)">
+              </i>
+
+              <i class="bi bi-pencil-fill"></i>
+
+              <button routerLink="/gradeAssign">
+                View Grades
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+      <app-empty-state
+        *ngIf="filteredAssignments.length === 0"
+        title="No Assignments Found"
+        description="Create your first Assignment.">
+      </app-empty-state>
+
+    </div>
+
+    <div class="create-assignment">
+
+      <button routerLink="/add-assignment">
+        Create Assignment
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

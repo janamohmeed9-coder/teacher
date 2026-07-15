@@ -1,0 +1,131 @@
+.container{
+    display:flex;
+    height:100vh;
+    overflow:hidden;
+}
+
+.content{
+    flex:1;
+    background:#f5f5f5;
+    padding:30px;
+    overflow:auto;
+}
+
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.top-bar h1{
+    margin:0;
+    font-size:35px;
+}
+
+.top-bar input{
+    width:280px;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.filters-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.filters{
+    display:flex;
+    gap:20px;
+}
+
+.filters select{
+    width:220px;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.date{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:500;
+}
+
+.date button{
+    border:none;
+    background:none;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.select-all{
+    margin-bottom:20px;
+}
+
+.select-all label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:15px;
+}
+
+.students{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#fff;
+    padding:30px 40px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+    margin-top:30px;
+
+}
+
+.name{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+}
+
+.absent{
+    background:#747474;
+    color:#fff;
+    border:none;
+    border-radius:100%;
+    padding:20px 10px;
+    cursor:pointer;
+    font-size: 10px;
+
+}
+.present{
+    background:#747474;
+    color:#fff;
+    border:none;
+    border-radius:100%;
+    padding:20px 10px;
+    cursor:pointer;
+    font-size: 10px;
+}
+.active-absent {
+  background-color: red;
+  color: white;
+}
+
+.active-present {
+  background-color: green;
+  color: white;
+}

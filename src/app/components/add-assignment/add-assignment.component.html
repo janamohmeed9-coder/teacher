@@ -1,0 +1,93 @@
+<div class="container">
+
+  <h2>Create New Assignment</h2>
+
+  <p class="sub-title">
+    Fill in the details below
+  </p>
+
+  <div class="card">
+
+    <div class="upload-box">
+
+      <input
+        type="file"
+        (change)="onFileSelected($event)">
+
+    </div>
+
+    <div class="form">
+
+      <div class="left">
+
+        <label>Assignment Name</label>
+
+        <input
+          type="text"
+          [(ngModel)]="assignment.assignmentName"
+          name="assignmentName">
+
+        <label>Deadline</label>
+
+        <input
+          type="date"
+          [(ngModel)]="assignment.deadline"
+          name="deadline">
+
+      </div>
+
+      <div class="right">
+
+        <label>Description</label>
+
+        <textarea
+          [(ngModel)]="assignment.description"
+          name="description">
+        </textarea>
+
+        <label>Course Id</label>
+
+       <select
+  [(ngModel)]="assignment.courseId"
+  name="courseId">
+
+  <option [ngValue]="0">Select Course</option>
+
+  <option
+    *ngFor="let course of courses"
+    [ngValue]="course.courseId">
+
+    {{ course.courseName }}
+
+  </option>
+
+</select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="buttons">
+
+    <button
+      type="button"
+      class="cancel"
+      routerLink="/assignment">
+
+      Cancel
+
+    </button>
+
+    <button
+      type="button"
+      (click)="createAssignment()">
+
+      Publish
+
+    </button>
+
+  </div>
+
+</div>

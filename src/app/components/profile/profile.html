@@ -1,0 +1,105 @@
+<div class="layout">
+
+
+  <main class="content">
+
+    <div class="profile-card">
+
+      <div class="profile-top">
+
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Student">
+
+<h2>
+  {{ profile?.firstName }} {{ profile?.lastName }}
+</h2>
+     
+
+      </div>
+
+      <hr>
+
+      <div class="details">
+
+        <div class="row-item">
+          <div class="left">
+            <i class="bi bi-postcard"></i>
+            <span>Na ID</span>
+          </div>
+          <div class="right">{{ profile?.nationalNumber }}</div>
+        </div>
+
+        <div class="row-item">
+          <div class="left">
+            <i class="bi bi-envelope"></i>
+            <span>Email</span>
+          </div>
+<div class="right">
+  {{ profile?.email }}
+</div>        </div>
+
+        <div class="row-item">
+          <div class="left">
+            <i class="bi bi-telephone"></i>
+            <span>Phone Number</span>
+          </div>
+          <div class="right">{{ profile?.phoneNumber }}</div>
+        </div>
+
+        <div class="row-item">
+          <div class="left">
+            <i class="bi bi-calendar-date"></i>
+            <span>Date Of Birth</span>
+          </div>
+          <div class="right">{{profile?.birthDate}}</div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="stats">
+
+  <div class="stat-card">
+
+    <div class="card-text">
+      <small>address</small>
+      <h5>{{profile?.address}}</h5>
+    </div>
+
+    <div class="card-icon blue-light">
+      <i class="bi bi-journal-bookmark"></i>
+    </div>
+
+  </div>
+
+  <div class="stat-card">
+
+    <div class="card-text">
+      <small>Experienceg</small>
+      <h5>{{profile?.numberOfYearsOfExperience}}</h5>
+    </div>
+
+    <div class="card-icon blue">
+      <i class="bi bi-upload"></i>
+    </div>
+
+  </div>
+
+  <div class="stat-card">
+
+    <div class="card-text">
+      <small>employmentHistory</small>
+      <h5>{{ profile?.employmentHistory }}</h5>
+    </div>
+
+    <div class="card-icon green">
+      <i class="bi bi-person-standing"></i>
+    </div>
+
+  </div>
+
+</div>
+
+  </main>
+
+</div>
