@@ -15,22 +15,25 @@ import { AddAssignmentComponent } from "./components/add-assignment/add-assignme
 import { Attendance } from "./components/attendance/attendance";
 import { StudentProfile } from "./components/student-profile/student-profile";
 import { AddGrade } from "./components/add-grade/add-grade";
+import { GradeAssignmentComponent } from "./components/grade-assignment/grade-assignment.component";
 export const routes: Routes = [
-    {path: '', redirectTo: 'login',pathMatch:'full'},
-    {path: 'timeTable' , component:Table},
-    {path: 'studentProfile/:id' , component:StudentProfile},
-    {path: 'profile', component:ProfileComponent},
-    {path: 'assignment', component:Assignment},
-    {path: 'studentList', component:List},
-    {path: 'grade', component:GradeComponent},
-    {path: 'login', component:Login},
-    {path: 'courses', component:Courses},
-    {path: 'report', component:Report},
-    {path: 'team', component:Team},
-    {path: 'notification', component:NotificationComponent},
-    {path: 'addTeams', component:AddTeamComponent},
-    {path: 'allTeams', component:AllTeamsComponent},
-    {path: 'add-assignment',component: AddAssignmentComponent},
-    {path: 'attendance', component: Attendance},
-    {path: 'addGrade', component: AddGrade},
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'timeTable', component: Table },
+    { path: 'studentProfile/:id', component: StudentProfile },
+    { path: 'profile', component: ProfileComponent },
+    { path: 'assignment', component: Assignment },
+    { path: 'studentList', component: List },
+    { path: 'grade', component: GradeComponent },
+    { path: 'login', component: Login },
+    { path: 'courses', component: Courses },
+    { path: 'report', component: Report },
+    { path: 'team', component: Team },
+    { path: 'notification', component: NotificationComponent },
+    { path: 'addTeams', component: AddTeamComponent },
+    { path: 'allTeams', component: AllTeamsComponent },
+    { path: 'add-assignment', component: AddAssignmentComponent },
+    { path: 'attendance', component: Attendance },
+    { path: 'addGrade/:id', component: AddGrade },
+    { path: 'addGrade', component: AddGrade },
+    { path: 'gradeAssign/:id', component: GradeAssignmentComponent }
 ]

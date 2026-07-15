@@ -11,11 +11,10 @@
         (search)="onSearch($event)">
       </app-search-bar>
 
-      <button
-        routerLink="/addGrade"
-        class="add-btn">
-        + Add Grade
-      </button>
+<button
+  [routerLink]="['/addGrade', assignmentId]" class="add-btn">
+   + Add Grade
+</button>
 
     </div>
 
@@ -33,11 +32,15 @@
 
           <h4>{{ item.studentName }}</h4>
 
+          <p>{{ item.assignmentName }}</p>
+
+          <small>{{ item.markType }}</small>
+
           <div class="progress-bar">
 
             <div
               class="progress-fill"
-              [style.width.%]="(item.studentGrade / item.maxGrade) * 100">
+              [style.width.%]="(item.score / item.maxScore) * 100">
 
             </div>
 
@@ -47,7 +50,7 @@
 
         <span class="badge">
 
-          {{ (item.studentGrade / item.maxGrade) * 100 | number:'1.0-0' }}%
+          {{ (item.score / item.maxScore) * 100 | number:'1.0-0' }}%
 
         </span>
 
@@ -61,8 +64,16 @@
 
         <button
           class="action-btn delete"
-          (click)="deleteGrade(item.id)">
+          (click)="deleteGrade(item.markId)">
           Delete
+        </button>
+
+        <button
+          class="action-btn"
+          [disabled]="item.approved">
+
+          {{ item.approved ? 'Published' : 'Pending' }}
+
         </button>
 
       </div>

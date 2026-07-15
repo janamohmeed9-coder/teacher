@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { StudentResponse } from '../../interface/student-response.interface';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { FilterComponent } from '../filter/filter.component';
@@ -56,16 +56,41 @@ export class Attendance implements OnInit {
     this.loadAttendance();
   }
 
-  loadAttendance(): void {
-    this.attendanceService.getAttendance().subscribe({
-      next: (data) => {
-        this.students = data;
-      },
-      error: (err) => {
-        console.error('Error loading attendance:', err);
-      }
-    });
-  }
+loadAttendance(): void {
+
+  this.attendanceService.getAttendance(1).subscribe({
+
+    next: (data: StudentResponse[]) => {
+
+      this.students = data.map((student: StudentResponse) => ({
+
+        id: student.studentId.toString(),
+
+        name: student.firstname + ' ' + student.lastName,
+
+        grade: student.gradeName,
+
+        className: student.className,
+
+        session: 'Session 1',
+
+        status: '',
+
+        selected: false
+
+      }));
+
+    },
+
+    error: (err: any) => {
+
+      console.error(err);
+
+    }
+
+  });
+
+}
 
   onSearch(value: string) {
     this.searchTerm = value;

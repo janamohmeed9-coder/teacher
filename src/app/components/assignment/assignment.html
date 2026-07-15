@@ -45,10 +45,10 @@
 
               <i class="bi bi-pencil-fill"></i>
 
-              <button routerLink="/gradeAssign">
-                View Grades
-              </button>
-
+<button
+  [routerLink]="['/gradeAssign', assignment.assignmentId]">
+  View Grades
+</button>
             </td>
 
           </tr>

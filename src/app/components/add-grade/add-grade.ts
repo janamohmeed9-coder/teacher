@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 
 import { GradeService } from '../../services/grade.service';
 import { StudentService } from '../../services/student.service';
+import { ClassService } from '../../services/class.service';
 
 import { AddGradeInterface } from '../../interface/add-grade.interface';
 import { StudentInterface } from '../../interface/student.interface';
-
 import { ClassInterface } from '../../interface/class.interface';
-import { ClassService } from '../../services/class.service';
+
 @Component({
   selector: 'app-add-grade',
   standalone: true,
@@ -24,14 +24,17 @@ import { ClassService } from '../../services/class.service';
 })
 export class AddGrade implements OnInit {
 
-constructor(
-  private gradeService: GradeService,
-  private studentService: StudentService,
-  private classService: ClassService,
-  private router: Router
-) {}
+  constructor(
+    private gradeService: GradeService,
+    private studentService: StudentService,
+    private classService: ClassService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
-selectedClass: ClassInterface | null = null;
+  assignmentId: number | null = null;
+
+  selectedClass: ClassInterface | null = null;
 
   grade: AddGradeInterface = {
     maxGrade: 0,
@@ -40,51 +43,50 @@ selectedClass: ClassInterface | null = null;
 
   students: StudentInterface[] = [];
   filteredStudents: StudentInterface[] = [];
-
   selectedStudent: StudentInterface | null = null;
 
-classes: ClassInterface[] = [];
-ngOnInit(): void {
+  classes: ClassInterface[] = [];
 
- this.classService.getClasses().subscribe({
-    next: (data) => {
-      this.classes = data;
-      console.log(data); // لازم يطبع [{classId:..., className:'3A'}, ...]
-    },
-    error: (err) => {
-      console.error(err);
+  ngOnInit(): void {
+
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+      this.assignmentId = Number(id);
     }
-  });
 
-}
-
-loadStudents(): void {
-
-  console.log("loadStudents called");
-  console.log("selectedClass =", this.selectedClass);
-
-  console.log("Selected Class:", this.selectedClass);
-  console.log("Class Id:", this.selectedClass?.classId);
-
-  if (!this.selectedClass) {
-    this.filteredStudents = [];
-    this.selectedStudent = null;
-    return;
-  }
-
-  this.studentService
-    .getStudentsByClass(this.selectedClass.classId)
-    .subscribe({
+    this.classService.getClasses().subscribe({
       next: (data) => {
-        console.log("Students:", data);
-        this.filteredStudents = data;
-        this.selectedStudent = null;
+        this.classes = data;
       },
       error: (err) => {
-        console.log(err);
+        console.error(err);
       }
     });
-}
+
+  }
+
+  loadStudents(): void {
+
+    if (!this.selectedClass) {
+      this.filteredStudents = [];
+      this.selectedStudent = null;
+      return;
+    }
+
+    this.studentService
+      .getStudentsByClass(this.selectedClass.classId)
+      .subscribe({
+        next: (data) => {
+          this.filteredStudents = data;
+          this.selectedStudent = null;
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+
+  }
 
   saveGrade(): void {
 
@@ -99,7 +101,7 @@ loadStudents(): void {
 
       courseId: 1,
 
-      assignmentId: 1,
+      assignmentId: this.assignmentId!,
 
       typeId: 1,
 
@@ -109,13 +111,19 @@ loadStudents(): void {
 
     };
 
+    console.log(request);
+
     this.gradeService.addGrade(request).subscribe({
 
       next: () => {
 
         alert('Grade added successfully');
 
-        this.router.navigate(['/grade']);
+        if (this.assignmentId) {
+          this.router.navigate(['/gradeAssign', this.assignmentId]);
+        } else {
+          this.router.navigate(['/grade']);
+        }
 
       },
 

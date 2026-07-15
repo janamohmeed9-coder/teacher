@@ -24,5 +24,10 @@ export class GradeService {
   deleteGrade(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+ getMarksByAssignment(assignmentId: number): Observable<GradeInterface[]> {
+  return this.http.get<GradeInterface[]>(
+    `${this.apiUrl}/assignment/${assignmentId}`
+  );
+}
 
 }
