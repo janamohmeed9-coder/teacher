@@ -28,4 +28,20 @@ public class AssignmentController {
 
         return assignmentService.createAssignment(request);
     }
+    @GetMapping("/{id}")
+    public AssignmentResponse getAssignmentById(@PathVariable Long id) {
+        return assignmentService.getAssignmentById(id);
+    }
+
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public AssignmentResponse updateAssignment(
+            @PathVariable Long id,
+            @ModelAttribute AssignmentRequest request) {
+
+        return assignmentService.updateAssignment(id, request);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteAssignment(@PathVariable Long id) {
+        assignmentService.deleteAssignment(id);
+    }
 }

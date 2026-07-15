@@ -30,27 +30,22 @@ public class AssignmentService {
         assignment.setName(request.getAssignmentName());
         assignment.setDescription(request.getDescription());
         assignment.setDeadline(request.getDeadline());
-
         assignment.setAssignDate(LocalDate.now());
+        assignment.setStudentSubmission("");
 
-      assignment.setStudentSubmission("");
-
-        if(request.getFile()!=null && !request.getFile().isEmpty()){
-
+        if (request.getFile() != null && !request.getFile().isEmpty()) {
             assignment.setFileLink(request.getFile().getOriginalFilename());
-
         }
 
         assignmentRepository.save(assignment);
 
         course.getAssignments().add(assignment);
+        assignment.getCourses().add(course);
 
         courseRepository.save(course);
 
         return mapToResponse(assignment);
-
     }
-
     public List<AssignmentResponse> getAssignments(){
 
         return assignmentRepository.findAll()
@@ -87,4 +82,38 @@ public class AssignmentService {
 
     }
 
+
+    public AssignmentResponse getAssignmentById(Long id) {
+
+        Assignment assignment = assignmentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Assignment not found"));
+
+        return mapToResponse(assignment);
+    }
+
+    public AssignmentResponse updateAssignment(Long id, AssignmentRequest request) {
+
+        Assignment assignment = assignmentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Assignment not found"));
+
+        assignment.setName(request.getAssignmentName());
+        assignment.setDescription(request.getDescription());
+        assignment.setDeadline(request.getDeadline());
+
+        if (request.getFile() != null && !request.getFile().isEmpty()) {
+            assignment.setFileLink(request.getFile().getOriginalFilename());
+        }
+
+        assignmentRepository.save(assignment);
+
+        return mapToResponse(assignment);
+    }
+
+    public void deleteAssignment(Long id) {
+
+        Assignment assignment = assignmentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Assignment not found"));
+
+        assignmentRepository.delete(assignment);
+    }
 }

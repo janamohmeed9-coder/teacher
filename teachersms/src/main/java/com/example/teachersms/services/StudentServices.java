@@ -33,6 +33,8 @@ public class StudentServices {
 
         return StudentResponse.builder()
                 .studentId(student.getId())
+                .firstname(user.getFirstName())
+                .lastName(user.getLastName())
                 .birthDate(user.getBirthDate())
                 .email(user.getEmail())
                 .phoneNumber(phoneNumber)

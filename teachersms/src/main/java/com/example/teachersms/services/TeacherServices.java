@@ -23,10 +23,19 @@ public class TeacherServices {
     public TeacherProfileResponse getTeacherProfile() {
 
 
+
         User user = authenticationService.getUser();
+
 
         Teacher teacher = teacherRepository.findByUser(user)
                 .orElseThrow(() -> new RuntimeException("Teacher not found"));
+
+        Long phoneNumber = user.getPhoneNumbers()
+                .stream()
+                .findFirst()
+                .map(phone -> phone.getId().getPhoneNumber())
+                .orElse(null);
+
 
         return TeacherProfileResponse.builder()
                 .firstName(user.getFirstName())
@@ -38,7 +47,12 @@ public class TeacherServices {
                 .education(teacher.getEducation())
                 .employmentHistory(teacher.getEmploymentHistory())
                 .numberOfYearsOfExperience(teacher.getNumberOfYearsOfExperience())
+                .phoneNumber(phoneNumber)
+                .nationalNumber(user.getNationalNumber())
+                .birthDate(user.getBirthDate())
                 .build();
+
+
     }
 
     public TeacherProfileResponse updateProfile(UpdateProfileRequest request) {

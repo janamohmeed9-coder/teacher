@@ -16,6 +16,12 @@ import java.time.LocalDate;
 @Table(name = "PROJECT")
 public class Project {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_seq")
+    @SequenceGenerator(
+            name = "project_seq",
+            sequenceName = "PROJECT_SEQ",
+            allocationSize = 1
+    )
     @Column(name = "PROJECT_ID", nullable = false)
     private Long id;
 

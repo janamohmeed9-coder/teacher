@@ -2,6 +2,8 @@ package com.example.teachersms.dtos;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,4 +20,7 @@ public class TeacherProfileResponse{
     private String education;
     private String employmentHistory;
     private Long numberOfYearsOfExperience;
+    private Long phoneNumber;
+    private Long nationalNumber;
+    private LocalDate birthDate;
 }

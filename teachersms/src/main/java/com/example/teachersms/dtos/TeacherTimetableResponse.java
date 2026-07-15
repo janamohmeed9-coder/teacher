@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Data
@@ -18,7 +19,7 @@ public class TeacherTimetableResponse {
     private String courseName;
     private String className;
     private Long dayOfWeek;
-    private LocalDate startAt;
-    private LocalDate endAt;
+    private LocalTime startAt;
+    private LocalTime endAt;
 
 }

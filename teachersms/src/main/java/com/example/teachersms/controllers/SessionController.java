@@ -15,7 +15,7 @@ public class SessionController {
 
     private final SessionService sessionService;
 
-    @GetMapping("/my-timetable")
+    @GetMapping("/timetable")
     public ResponseEntity<List<TeacherTimetableResponse>> getMyTimeTable() {
         return ResponseEntity.ok(sessionService.getTeacherTimetable());
     }
