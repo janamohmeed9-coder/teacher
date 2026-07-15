@@ -19,6 +19,12 @@ public class MarkController {
     public List<MarkResponse> getMarks() {
         return markService.getAllMarks();
     }
+    @GetMapping("/assignment/{assignmentId}")
+    public List<MarkResponse> getMarksByAssignment(
+            @PathVariable Long assignmentId) {
+
+        return markService.getMarksByAssignment(assignmentId);
+    }
 
     @PostMapping
     public void addMark(@RequestBody AddMarkRequest request) {

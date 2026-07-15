@@ -16,6 +16,7 @@ public interface MarkRepository extends JpaRepository<Mark, Long> {
     Optional<Mark> findByUser_IdAndType_Id(Long userId, Long typeId);
 
     List<Mark> findByAssignmentIdAndIsApprovedTrue(Long assignmentId);
+    List<Mark> findByAssignment_Id(Long assignmentId);
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Transactional

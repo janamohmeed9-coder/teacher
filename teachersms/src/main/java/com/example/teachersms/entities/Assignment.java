@@ -20,7 +20,7 @@ import java.util.Set;
 public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "assignment_seq")
-    @Column(name = "ASSIGNMENT_ID", nullable = false)
+    @Column(name = "ASSIGNMENT_ID")
     private Long id;
 
     @Size(max = 255)

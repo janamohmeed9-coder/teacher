@@ -43,6 +43,26 @@ public class MarkService {
                 .toList();
     }
 
+    public List<MarkResponse> getMarksByAssignment(Long assignmentId) {
+
+        return markRepository
+                .findByAssignment_Id(assignmentId)
+                .stream()
+                .map(mark -> MarkResponse.builder()
+                        .markId(mark.getId())
+                        .studentName(
+                                mark.getUser().getFirstName() + " " +
+                                        mark.getUser().getLastName())
+                        .markType(mark.getType().getType())
+                        .score(mark.getScore())
+                        .maxScore(mark.getMaxScore())
+                        .assignmentName(mark.getAssignment().getName())
+                        .approved(mark.getIsApproved())
+                        .build())
+                .toList();
+
+    }
+
     public void addMark(AddMarkRequest request) {
 
         Course course = courseRepository.findById(request.getCourseId())

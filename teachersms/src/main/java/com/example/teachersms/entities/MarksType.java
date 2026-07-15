@@ -1,9 +1,6 @@
 package com.example.teachersms.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -15,6 +12,12 @@ import lombok.Setter;
 @Table(name = "MARKS_TYPE")
 public class MarksType {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mark_type_seq")
+    @SequenceGenerator(
+            name = "mark_type_seq",
+            sequenceName = "MARK_TYPE_SEQ",
+            allocationSize = 1
+    )
     @Column(name = "TYPE_ID", nullable = false)
     private Long id;
 
