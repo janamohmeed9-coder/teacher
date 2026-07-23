@@ -139,7 +139,7 @@ public class Mark {
     @Column(name = "IS_APPROVED")
     private Boolean isApproved;
 
-    @NotNull
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ASSIGNMENT_ID", nullable = false)
     private Assignment assignment;

@@ -21,7 +21,7 @@ public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "assignment_seq")
     @Column(name = "ASSIGNMENT_ID")
-    private Long id;
+    private long id;
 
     @Size(max = 255)
     @NotNull

@@ -33,8 +33,12 @@ public class MarkService {
                 .stream()
                 .map(mark -> MarkResponse.builder()
                         .markId(mark.getId())
-                        .studentName(mark.getUser().getFirstName()+" "+mark.getUser().getLastName())
-                        .assignmentName(mark.getAssignment().getName())
+                        .studentName(mark.getUser().getFirstName() + " " + mark.getUser().getLastName())
+                        .assignmentName(
+                                mark.getAssignment() != null
+                                        ? mark.getAssignment().getName()
+                                        : "Month Grade"
+                        )
                         .markType(mark.getType().getType())
                         .score(mark.getScore())
                         .maxScore(mark.getMaxScore())
@@ -42,7 +46,6 @@ public class MarkService {
                         .build())
                 .toList();
     }
-
     public List<MarkResponse> getMarksByAssignment(Long assignmentId) {
 
         return markRepository
@@ -65,11 +68,13 @@ public class MarkService {
 
     public void addMark(AddMarkRequest request) {
 
+        System.out.println("studentId = " + request.getStudentId());
+        System.out.println("courseId = " + request.getCourseId());
+        System.out.println("assignmentId = " + request.getAssignmentId());
+        System.out.println("typeId = " + request.getTypeId());
+
         Course course = courseRepository.findById(request.getCourseId())
                 .orElseThrow(() -> new RuntimeException("Course not found"));
-
-        Assignment assignment = assignmentRepository.findById(request.getAssignmentId())
-                .orElseThrow(() -> new RuntimeException("Assignment not found"));
 
         Student student = studentRepository.findById(request.getStudentId())
                 .orElseThrow(() -> new RuntimeException("Student not found"));
@@ -77,23 +82,27 @@ public class MarkService {
         MarksType type = markTypeRepository.findById(request.getTypeId())
                 .orElseThrow(() -> new RuntimeException("Mark Type not found"));
 
+        Assignment assignment = null;
+
+        if (request.getAssignmentId() != null) {
+            assignment = assignmentRepository.findById(request.getAssignmentId())
+                    .orElseThrow(() -> new RuntimeException("Assignment not found"));
+        }
+
         Mark mark = new Mark();
 
         mark.setCourse(course);
-        mark.setAssignment(assignment);
         mark.setUser(student.getUser());
         mark.setType(type);
+        mark.setAssignment(assignment);
 
         mark.setScore(Double.valueOf(request.getScore()));
         mark.setMaxScore(Double.valueOf(request.getMaxScore()));
-
         mark.setFeedbackDate(LocalDate.now());
-
         mark.setIsApproved(false);
 
         markRepository.save(mark);
     }
-
 
     public void editMark(Long markId, AddMarkRequest request) {
 
